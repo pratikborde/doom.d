@@ -8,21 +8,23 @@
 
        :completion
        (company            ; the ultimate code completion backend
-        +auto)             ; as you type completion
-       (helm
-        +fuzzy)            ; the *other* search engine for love and life
+        +auto)              ; as you type completion
+        ;; +childframe)       ; a nicer company UI. Emacs +26 only!
+       ;; (helm
+       ;; +fuzzy)          ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ;;ivy               ; a search engine for love and life
+       (ivy
+        +fuzzy)            ; a search engine for love and life
 
        :ui
-       workspaces          ; tab emulation, persistence & separate workspaces
+       workspaces        ; tab emulation, persistence & separate workspaces
        ;;deft            ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        ;; doom-modeline  ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       ;; evil-goggles      ; display visual hints when editing in evil
-       ophints
+       ;; evil-goggles
+       ophints           ; display visual hints when editing in evil
        ;;fci             ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        modeline          ; snazzy, Atom-inspired modeline, plus API
@@ -38,6 +40,7 @@
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
+       indent-guides
 
        :editor
        snippets            ; my elves. They type so I don't have to
@@ -52,16 +55,17 @@
        rotate-text       ; cycle region at point between text candidates
        fold
 
+       :term
+       eshell            ; a consistent, cross-platform shell (WIP)
+
        :emacs
        (dired            ; making dired pretty [functional]
-       +ranger         ; bringing the goodness of ranger to dired
-       +icons          ; colorful icons for dired-mode
-        )
+        +ranger         ; bringing the goodness of ranger to dired
+        +icons)          ; colorful icons for dired-mode
        ;; ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
-       eshell            ; a consistent, cross-platform shell (WIP)
        ;; hideshow       ; basic code-folding support
-       imenu             ; an imenu sidebar and searchable code index
+       ;; imenu             ; an imenu sidebar and searchable code index
        ;;term            ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -108,7 +112,7 @@
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
        javascript          ; all(hope(abandon(ye(who(enter(here))))))
-       ;; typescript          ; javascript but better
+       typescript          ; javascript but better
        ;;julia             ; a better, faster MATLAB
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;ledger            ; an accounting system in Emacs
@@ -134,7 +138,7 @@
        ;;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       (sh +fish)          ; she sells (ba|z|fi)sh shells on the C xor
+       (sh +fish)           ; she sells (ba|z|fi)sh shells on the C xor
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        web                 ; the tubes
@@ -154,7 +158,7 @@
 
        :collab
        ;;floobits          ; peer programming for a price
-       ;;impatient-mode    ; show off code over HTTP
+       impatient-mode      ; show off code over HTTP
 
        :config
        ;; For literate config users. This will tangle+compile a config.org

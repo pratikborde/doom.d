@@ -5,21 +5,82 @@
 ;;; env fix
 ;;; Code:
 (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize))
 
-;; Prettier stuff ----------------
-;; TODO - Might not need this as format-all can be used, but saving this for later
-;; (require 'prettier-js)
 
-;; (eval-after-load 'typescript-mode
-;;     '(progn
-;;        (add-hook 'typescript-mode-hook #'add-node-modules-path)
-;;        (add-hook 'typescript-mode-hook #'prettier-js-mode)))
 
-;; (eval-after-load 'web-mode
-;;   '(progn
-;;     (add-hook 'js2-mode-hook 'prettier-js-mode)
-;;     (add-hook 'web-mode-hook 'prettier-js-mode)))
+;; GLOBAL DEFAULTS ---------------------
+(setq
+ doom-modeline-minor-modes t
+ doom-modeline-vcs-max-length 50
+ doom-modeline-buffer-file-name-style 'truncate-with-project
+ doom-themes-enable-bold t    ; if nil, bold is universally disabled
+ doom-themes-enable-italic t
+ evil-escape-key-sequence "fd"
+ +workspaces-on-switch-project-behavior t
+ magit-process-finish-apply-ansi-colors t
+ doom-font (font-spec :family "Fira Code" :size 13)
+ doom-big-font (font-spec :family "Fira Code" :size 30))
+
+
+
+;; THEME STUFF ---------------------
+
+(require 'doom-themes)
+;; Load the theme (doom-one, doom-molokai, doom-Iosvkem etc); keep in mind that each theme
+;; may have their own settings.
+(load-theme 'doom-Iosvkem t)
+;; Enable flashing mode-line on errors
+(doom-themes-visual-bell-config)
+;; or for treemacs users
+(doom-themes-treemacs-config)
+;; Corrects (and improves) org-mode's native fontification.
+(doom-themes-org-config)
+
+
+
+;; VISUAL STUFF
+(add-hook 'prog-mode-hook 'highlight-symbol-mode)
+
+(add-to-list 'default-frame-alist
+             '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist
+'(ns-appearance . dark))
+
+
+
+;; ORG MODE ------------------
+(add-hook 'org-mode-hook (lambda ()
+                           "Beautify Org Checkbox Symbol"
+                           (push '("[ ]" .  "☐") prettify-symbols-alist)
+                           (push '("[X]" . "☑" ) prettify-symbols-alist)
+                           (push '("[-]" . "❍" ) prettify-symbols-alist)
+                           (prettify-symbols-mode)))
+
+;; org projectile
+(after! 'projectile
+  (require 'org-projectile)
+  (setq org-projectile-projects-file
+        "~/org/project_todos.org")
+  (push (org-projectile-project-todo-entry) org-capture-templates)
+  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
+
+;; org fancy priorities
+(use-package org-fancy-priorities
+  ;; :ensure t
+  :hook
+  (org-mode . org-fancy-priorities-mode)
+  :config
+  (setq org-fancy-priorities-list '((?A . "❗")
+                                    (?B . "⬆")
+                                    (?C . "⬇")
+                                    (?D . "☕")
+                                    (?1 . "⚡")
+                                    (?2 . "⮬")
+                                    (?3 . "⮮")
+                                    (?4 . "☕")
+                                    (?I . "Important"))))
+
 
 
 ;; TYPESCRIPT STUFF ---------------------
@@ -30,8 +91,11 @@
 
 ;; this adds code hints in the echo area
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(add-hook 'prog-mode-hook #'visual-line-mode)
 
-;; flow --------------------
+
+
+;; FLOW --------------------
 ;; TODO - This does not function properly, might delete this later
 ;; (add-hook 'js2-mode-hook 'flow-minor-mode)
 
@@ -43,31 +107,24 @@
 ;;   (flycheck-add-mode 'javascript-eslint 'flow-minor-mode))
 ;;   ;; (flycheck-add-next-checker 'javascript-flow 'javascript-eslint))
 
-;; VISUAL STUFF ---------------------
-(setq
- doom-font (font-spec :family "Fira Code" :size 12)
- doom-big-font (font-spec :family "Fira Code" :size 30))
 
-(require 'doom-themes)
 
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+;; FORGE ---------------------
+(with-eval-after-load 'forge
+  ;; (add-to-list 'forge-alist '("github.dev.global.tesco.org" "github.dev.global.tesco.org/api/v3"
+  ;;                             "github.dev.global.tesco.org" forge-github-repository))
+  (push '("github.dev.global.tesco.org" "github.dev.global.tesco.org/api/v3"
+          "github.dev.global.tesco.org" forge-github-repository)
+        forge-alist)
+  (forge--split-url "https://github.dev.global.tesco.org/Online-Technology/lego-web.git"))
 
-;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
-;; may have their own settings.
-(load-theme 'doom-dracula t)
 
-;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config)
 
-;; Enable custom neotree theme (all-the-icons must be installed!)
-(doom-themes-neotree-config)
-;; or for treemacs users
-(doom-themes-treemacs-config)
+;; GPG/GNUPG CONFIG ---------------------
+(require 'epa-file)
+(custom-set-variables '(epg-gpg-program  "/usr/local/Cellar/gnupg/2.2.16_1"))
+(epa-file-enable)
 
-;; Corrects (and improves) org-mode's native fontification.
-(doom-themes-org-config)
 
 
 ;; CUSTOM KEYBINDINGS ---------------------
@@ -75,14 +132,28 @@
 
       "cF" #'tide-fix
       "cR" #'tide-format
+      :desc "Projectile todo" "pO" #'org-projectile-goto-location-for-project
+      :desc "Projectile eshell" "ps" #'projectile-run-eshell
+      :desc "Toggle iedit" "/e" #'iedit-mode
+
+      (:prefix ("j" . "jump to")
+        :desc "To line" "l" #'evil-avy-goto-line
+        :desc "timer" "t" #'evil-avy-goto-char-timer
+        :desc "To word" "w" #'evil-avy-goto-char)
 
       (:prefix ("oS" . "Spotify" )
-                :desc "Play/Pause" "P" #'spotify-playpause
-                :desc "Previous" "p" #'spotify-previous
-                :desc "Next" "n" #'spotify-next)
+        :desc "Play/Pause" "P" #'spotify-playpause
+        :desc "Previous" "p" #'spotify-previous
+        :desc "Next" "n" #'spotify-next)
+
+      (:prefix ("oL" . "Dash docset" )
+        :desc "dash-at-point" "d" #'dash-at-point
+        :desc "dash-at-point-with-docset" "D" #'dash-at-point-with-docset)
 
       (:prefix ("oG" . "Password generator")
-                :desc "Generate simple" "s" #'password-generator-simple
-                :desc "Generate strong" "S" #'password-generator-strong
-                :desc "Generate paranoid" "P" #'password-generator-paranoid
-                :desc "Generate phonetic" "p" #'password-generator-phonetic))
+        :desc "Generate simple" "s" #'password-generator-simple
+        :desc "Generate strong" "S" #'password-generator-strong
+        :desc "Generate paranoid" "P" #'password-generator-paranoid
+        :desc "Generate phonetic" "p" #'password-generator-phonetic))
+
+;;; config.el ends here
