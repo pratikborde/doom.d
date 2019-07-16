@@ -135,6 +135,7 @@
       :desc "Projectile todo" "pO" #'org-projectile-goto-location-for-project
       :desc "Projectile eshell" "ps" #'projectile-run-eshell
       :desc "Toggle iedit" "/e" #'iedit-mode
+      :desc "Save all buffers" "fw" #'evil-write-all
 
       (:prefix ("j" . "jump to")
         :desc "To line" "l" #'evil-avy-goto-line
