@@ -24,3 +24,4 @@
 (package! org-fancy-priorities)
 (package! emojify)
 (package! highlight-symbol)
+(package! chocolate-theme)

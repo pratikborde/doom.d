@@ -110,20 +110,20 @@
 
 
 ;; FORGE ---------------------
-(with-eval-after-load 'forge
-  ;; (add-to-list 'forge-alist '("github.dev.global.tesco.org" "github.dev.global.tesco.org/api/v3"
-  ;;                             "github.dev.global.tesco.org" forge-github-repository))
-  (push '("github.dev.global.tesco.org" "github.dev.global.tesco.org/api/v3"
-          "github.dev.global.tesco.org" forge-github-repository)
-        forge-alist)
-  (forge--split-url "https://github.dev.global.tesco.org/Online-Technology/lego-web.git"))
+;; (with-eval-after-load 'forge
+;;   ;; (add-to-list 'forge-alist '("github.dev.global.tesco.org" "github.dev.global.tesco.org/api/v3"
+;;   ;;                             "github.dev.global.tesco.org" forge-github-repository))
+;;   (push '("github.dev.global.tesco.org" "github.dev.global.tesco.org/api/v3"
+;;           "github.dev.global.tesco.org" forge-github-repository)
+;;         forge-alist)
+;;   (forge--split-url "https://github.dev.global.tesco.org/Online-Technology/lego-web.git"))
 
 
 
 ;; GPG/GNUPG CONFIG ---------------------
-(require 'epa-file)
-(custom-set-variables '(epg-gpg-program  "/usr/local/Cellar/gnupg/2.2.16_1"))
-(epa-file-enable)
+;; (require 'epa-file)
+;; (custom-set-variables '(epg-gpg-program  "/usr/local/Cellar/gnupg/2.2.16_1"))
+;; (epa-file-enable)
 
 
 
