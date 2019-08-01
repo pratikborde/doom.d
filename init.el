@@ -112,7 +112,7 @@
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
        javascript          ; all(hope(abandon(ye(who(enter(here))))))
-       typescript          ; javascript but better
+       ;;typescript          ; javascript but better
        ;;julia             ; a better, faster MATLAB
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;ledger            ; an accounting system in Emacs
@@ -169,3 +169,18 @@
        ;; provides a Spacemacs-inspired keybinding scheme and a smartparens
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("614e5089876ea69b515c50b6d7fa0a37eb7ed50fda224623ec49e1c91a0af6a1" "5d84ef8afded2cb54c77d21d6eb40a8a8356e4d490667ecc0de553e64e9f8292" "a16e816774b437acb78beb9916a60ea236cfcd05784227a7d829623f8468c5a2" "ef4edbfc3ec509612f3cf82476beddd2aeb3da7bdc3a35726337a0cc838a4ef4" "e3c87e869f94af65d358aa279945a3daf46f8185f1a5756ca1c90759024593dd" "4201f4d3ce08da82c08aca12d9ca2c085bb07c115c096b36f111a34f0cf8d11d" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "a9a3a1b0bc473e039066e90405dd1a84a96ef8df4772ef471fd1f87e4f2301a4" "2f0cbe053485bccbbbb582acdba7c7c9585ad808ee8ab32f0d727c3d39b42275" "4e132458143b6bab453e812f03208075189deca7ad5954a4abb27d5afce10a9a" "427fa665823299f8258d8e27c80a1481edbb8f5463a6fb2665261e9076626710" "0fdd9258f9bf92772bf3d7839dee12161a48225f58b91035de33abb5e3a11a73" "b0fd04a1b4b614840073a82a53e88fe2abc3d731462d6fde4e541807825af342" "a253b8f92ed1a77f179c1069c74cdcba2e62c428798c7f46062aa23efdb94ea1" "f4469be21de9e2b76148b49d46df0b4a70527d1dd20cc9a537ea56a7285125e3" "d0c943c37d6f5450c6823103544e06783204342430a36ac20f6beb5c2a48abe3" "c6eb20360a7ecdc906723a258891ba97817989115f9c01c13d0e682f4d00ae3f" "155a5de9192c2f6d53efcc9c554892a0d87d87f99ad8cc14b330f4f4be204445" "fd50a938921687443697065dd2c810d3e87c3bcaf81a33280d06a974c6697170" "1cfc3c062790a8d6f9ce677c50cf671609f45c32695778873b4a7619f1e749b5" "ed85d92735406d8b9dc96b1b7f1e1c19a908bcb550e6dcaccdbe62e43d6efbeb" "841b0cf4568ead763f166191e6573645011febc638bb32842f9a626cd8cd446a" "43c808b039893c885bdeec885b4f7572141bd9392da7f0bd8d8346e02b2ec8da" "93a0885d5f46d2aeac12bf6be1754faa7d5e28b27926b8aa812840fe7d0b7983" "256bd513a9875cd855077162cdfee8d75b0ad7e18fe8b8cbc10412561fbef892" "4e10cdf7d030fb41061cf57c74f6ddfc19db8d4af6c8e0723dc77f9922543a3d" "151bde695af0b0e69c3846500f58d9a0ca8cb2d447da68d7fbf4154dcf818ebc" "34c99997eaa73d64b1aaa95caca9f0d64229871c200c5254526d0062f8074693" "fd944f09d4d0c4d4a3c82bd7b3360f17e3ada8adf29f28199d09308ba01cc092" "955426466aa729d7d32483d3b2408cf474a1332550ad364848d1dfe9eecc8a16" "a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" default)))
+ '(package-check-signature nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

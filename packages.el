@@ -21,7 +21,7 @@
 (package! password-generator)
 (package! exec-path-from-shell)
 (package! add-node-modules-path)
-(package! org-fancy-priorities)
 (package! emojify)
 (package! highlight-symbol)
 (package! chocolate-theme)
+(package! company-tabnine)

@@ -11,6 +11,7 @@
 
 ;; GLOBAL DEFAULTS ---------------------
 (setq
+ package-check-signature nil
  doom-modeline-minor-modes t
  doom-modeline-vcs-max-length 50
  doom-modeline-buffer-file-name-style 'truncate-with-project
@@ -20,7 +21,8 @@
  +workspaces-on-switch-project-behavior t
  magit-process-finish-apply-ansi-colors t
  doom-font (font-spec :family "Fira Code" :size 13)
- doom-big-font (font-spec :family "Fira Code" :size 30))
+ doom-big-font (font-spec :family "Fira Code" :size 30)
+ org-bullets-bullet-list '("⬢" "◆" "▲" "■"))
 
 
 
@@ -29,7 +31,7 @@
 (require 'doom-themes)
 ;; Load the theme (doom-one, doom-molokai, doom-Iosvkem etc); keep in mind that each theme
 ;; may have their own settings.
-(load-theme 'doom-Iosvkem t)
+(load-theme 'doom-dracula t)
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
 ;; or for treemacs users
@@ -65,22 +67,6 @@
   (push (org-projectile-project-todo-entry) org-capture-templates)
   (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
 
-;; org fancy priorities
-(use-package org-fancy-priorities
-  ;; :ensure t
-  :hook
-  (org-mode . org-fancy-priorities-mode)
-  :config
-  (setq org-fancy-priorities-list '((?A . "❗")
-                                    (?B . "⬆")
-                                    (?C . "⬇")
-                                    (?D . "☕")
-                                    (?1 . "⚡")
-                                    (?2 . "⮬")
-                                    (?3 . "⮮")
-                                    (?4 . "☕")
-                                    (?I . "Important"))))
-
 
 
 ;; TYPESCRIPT STUFF ---------------------
@@ -92,6 +78,12 @@
 ;; this adds code hints in the echo area
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 (add-hook 'prog-mode-hook #'visual-line-mode)
+
+
+
+;; INTELLIGENT AUTOCOMPLETE
+(require 'company-tabnine)
+(add-to-list 'company-backend #'company-tabnine)
 
 
 
