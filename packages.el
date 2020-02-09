@@ -25,3 +25,4 @@
 (package! highlight-symbol)
 (package! chocolate-theme)
 (package! company-tabnine)
+(package! vimrc-mode)

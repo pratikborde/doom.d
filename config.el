@@ -11,8 +11,10 @@
 
 ;; GLOBAL DEFAULTS ---------------------
 (setq
+ company-idle-delay 0
+ company-show-numbers t
  package-check-signature nil
- doom-modeline-minor-modes t
+ ;; doom-modeline-minor-modes t
  doom-modeline-vcs-max-length 50
  doom-modeline-buffer-file-name-style 'truncate-with-project
  doom-themes-enable-bold t    ; if nil, bold is universally disabled
@@ -31,7 +33,7 @@
 (require 'doom-themes)
 ;; Load the theme (doom-one, doom-molokai, doom-Iosvkem etc); keep in mind that each theme
 ;; may have their own settings.
-(load-theme 'doom-dracula t)
+(load-theme 'doom-laserwave t)
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
 ;; or for treemacs users
@@ -139,9 +141,9 @@
         :desc "Previous" "p" #'spotify-previous
         :desc "Next" "n" #'spotify-next)
 
-      (:prefix ("oL" . "Dash docset" )
-        :desc "dash-at-point" "d" #'dash-at-point
-        :desc "dash-at-point-with-docset" "D" #'dash-at-point-with-docset)
+      ; (:prefix ("oL" . "Dash docset" )
+        ; :desc "dash-at-point" "d" #'dash-at-point
+        ; :desc "dash-at-point-with-docset" "D" #'dash-at-point-with-docset)
 
       (:prefix ("oG" . "Password generator")
         :desc "Generate simple" "s" #'password-generator-simple
